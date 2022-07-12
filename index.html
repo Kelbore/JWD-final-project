@@ -11,7 +11,66 @@
 </head>
 
 <body>
-  
+   <div class="container">
+      <div class="container-lg task-forming" id="taskforming">
+    <form class="form-group">
+      <br>
+      <hr>
+      <br>
+     <div class="form-group row">
+        <label for="assignee" class="col-sm-2 col-form-label" id="">Name</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" list="assignees" id="name" name="assignee" required placeholder="Task-Doer">
+          <datalist id="assignees">
+            <option value="John User"></option>
+            <option value="Jane User"></option>
+          </datalist>
+        </div>
+      </div>
+      <br>
+      <div class="form-group row">
+        <label for="assignee" class="col-sm-2 col-form-label" >Assigning</label>
+        <div class="col-sm-5">
+          <input id="assignedTo" type="text" class="form-control" list="assignees"   name="assignee" required placeholder="Task-Doer">
+          <datalist id="assignees">
+            <option value="John User"></option>
+            <option value="Jane User"></option>
+          </datalist>
+        </div>
+      </div>
+      <br>
+      <div class="form-group row">
+        <label for="task-desc" class="col-sm-2 col-form label" id="todo">Description</label>
+        <div class="col-sm-5">
+          <textarea id="description" name="task-desc" rows="5" cols="30" class="form-control" required placeholder="Task Description">
+          </textarea>
+        </div>
+      </div>
+      <br>
+      <div class="form-group row">
+        <label for="status" class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-5">
+          <input id="status" type="text" list="projects" name="project" required placeholder="Project #" class="form-control">
+          <datalist id="projects">
+            <option value="Done"></option>
+            <option value="In Progress"></option>
+            <option value="Stuck"></option>
+          </datalist>
+        </div>
+      </div>
+      
+      <br>
+      <div class="form-group row">
+        <label for="due-date" class="col-sm-2 col-form-label">Due Date</label>
+        <div class="col-sm-5">
+          <input  id="dueDate" type="date" name="due-date" id="dueDate1" required class="form-control">
+        </div>
+      </div>
+      <br>
+      <button id='submit' class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
+   </div>
    <!-- HOMEPAGE -->
   <div class="container-lg" id="homepage">
   <h2>Welcome, [User]!</h2>
@@ -63,11 +122,11 @@
     <div class="form-row">
     <div class="from-group">
       <label for="email">Email</label>
-      <input type="email" id="email" class="form-control" placeholder="Email">
+      <input type="email" id="emailaddress" class="form-control" placeholder="Email">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" class="form-control" placeholder="Password">
+      <input type="password" id="passcode" class="form-control" placeholder="Password">
     </div>
   </div>
     <div class="form-row">
@@ -114,7 +173,7 @@
     <div class="form-row">
     <div class="form-group">
     <label for="projectA">PROJECT A</label>
-    <input type="text" class="form-control" id="ProjectA" aria- 
+    <input type="text" class="form-control" id="projectOne" aria- 
      describedby="projecttracker"placeholder="Project A">
   </div> 
       
@@ -137,22 +196,23 @@
   
   <!-- TASK LAYOUT -->
   
- <div class="container-lg" id="tasklayout">
+ <div  class="container-lg" id="tasklayout">
     <ul class="list-group list-group-horizontal">
-
-      <div class="card w-25 list-group-item">
+<div id="demo">
+      <div class="card w-25 list-group-item" >
         <div class="card-body">
           <h5 class="card-title">Task 1, Project 1</h5>
           <p class="card-text" >Status:</p>
-          <p class="card-text" >Due Date</p>
+          <p class="card-text" >Due Date:</p>
           <p class="card-text" >Assigned To:</p>
           <p class="card-text" >Task Description:</p>
           <a href="#" class="btn btn-primary">Edit</a>
           <a href="#" class="btn btn-primary">Delete</a>
         </div>
       </div>
+  </div>
 
-      <div class="card w-25 list-group-item">
+      <div id="secondcard" class="card w-25 list-group-item">
         <div class="card-body">
           <h5 class="card-title">Task 2, Project 1</h5>
           <p class="card-text">Status:</p>
@@ -164,7 +224,7 @@
         </div>
       </div>
 
-      <div class="card w-25 list-group-item">
+      <div id="thirdcard" class="card w-25 list-group-item">
         <div class="card-body">
         <h5 class="card-title">Task 3, Project 1</h5>
         <p class="card-text">Status:</p>
@@ -176,7 +236,7 @@
         </div>
       </div> 
 
-      <div class="card w-25 list-group-item">
+      <div id="fourthcard" class="card w-25 list-group-item">
         <div class="card-body">
           <h5 class="card-title">Task 1, Project 2</h5>
           <p class="card-text">Status:</p>
@@ -188,7 +248,7 @@
         </div>
       </div>
 
-      <div class="card w-25 list-group-item">
+      <div id="fifthcard" class="card w-25 list-group-item">
         <div class="card-body">
           <h5 class="card-title">Task 1, Project 3</h5>
           <p class="card-text">Status:</p>
@@ -205,68 +265,7 @@
     
   
   <!-- TASK FORMING -->
-  <div class="container-lg task-forming" id="taskforming">
-    <form class="form-group">
-      <br>
-      <hr>
-      <div class="row"
-        <div class="col">
-          <select id="status" name="status" class="form-control col-sm-3" required placeholder="Status">
-            <option value="to-do">To Do</option>
-            <option value="in-progress">In Progress</option>
-            <option value="review">Review</option>
-            <option value="done">Done</option>
-          </select>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col">
-          <input type="text" required placeholder="Task Name" class="form-control col-sm-5">
-        </div>
-      </div>
-      <br>
-      <div class="form-group row">
-        <label for="assignee" class="col-sm-2 col-form-label" id="assignedTo">Assigning</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" list="assignees" id="assignee" name="assignee" required placeholder="Task-Doer">
-          <datalist id="assignees">
-            <option value="John User"></option>
-            <option value="Jane User"></option>
-          </datalist>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row">
-        <label for="task-desc" class="col-sm-2 col-form label" id="description">to do</label>
-        <div class="col-sm-5">
-          <textarea id="task-desc" name="task-desc" rows="5" cols="30" class="form-control" required placeholder="Task Description">
-          </textarea>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row">
-        <label for="project" class="col-sm-2 col-form-label" id="name">for</label>
-        <div class="col-sm-5">
-          <input type="text" list="projects" id="project" name="project" required placeholder="Project #" class="form-control">
-          <datalist id="projects">
-            <option value="Project 1"></option>
-            <option value="Project 2"></option>
-            <option value="Project 3"></option>
-          </datalist>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row">
-        <label for="due-date" class="col-sm-2 col-form-label" id="dueDate">by</label>
-        <div class="col-sm-5">
-          <input type="date" name="due-date" id="due-date" required class="form-control">
-        </div>
-      </div>
-      <br>
-      <button id='submit' class="btn btn-primary" type="submit">Submit</button>
-    </form>
-  </div>
+ 
 
     <script src="js/taskManager.js"></script>
     <script src="js/index.js"></script>
