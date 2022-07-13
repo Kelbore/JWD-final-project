@@ -1,18 +1,36 @@
 const assign = new TaskManager();
 
-document.getElementById("submit").addEventListener("click", buttonClick);
-
-
-function buttonClick() {
+taskform.addEventListener("submit", function() {
   event.preventDefault();
-  let taskName = document.getElementById('name').value;
-  let description = document.getElementById('description').value;
+  let name = document.getElementById('name').value;
   let assignedTo = document.getElementById('assignedTo').value;
-  let dueDate =  document.getElementById('dueDate').value;
+  let description = document.getElementById('description').value;
   let status = document.getElementById('status').value;
-  assign.addTask(taskName, description, assignedTo, dueDate,status);
-  console.log("It Works!"); 
-}
-  //newTaskVar.addTask();
+  let dueDate =  document.getElementById('dueDate').value;
   
+
+ 
+  if(name.length == 0) {
+    console.log("You must fill out this field");
+  } else {
+     assign.addTask(name, assignedTo, description, status, dueDate);
+     console.log("It Works!"); 
+  }
+ 
+});
+function validFormFieldInput(data){
+  const newTaskNameInput = document.querySelector('#name');
+  const name = newTaskNameInput.value;
+  const newTaskAssignedToInput = document.querySelector('#assignedTo');
+  const assignedTo = newTaskAssignedToInput.value;
+  const newTaskDescriptionInput = document.querySelector('#description');
+  const description = newTaskDescriptionInput.value;
+   const newTaskStatusInput = document.querySelector('#status');
+  const status = newTaskStatusInput.value;
+  const newTaskdueDateInput = document.querySelector('#dueDate');
+  const dueDate = newTaskdueDateInput.value;
+ 
+ 
+}
+
   
