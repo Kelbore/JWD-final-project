@@ -1,6 +1,4 @@
 
-
-
 taskform.addEventListener("submit", function() {
   event.preventDefault();
   let name = document.getElementById('name').value;
