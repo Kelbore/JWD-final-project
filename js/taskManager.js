@@ -2,8 +2,8 @@
 const createTaskHtml = (name, assignedTo, description, status, dueDate) => {
 
   const html = `
-   
-       <div class="card w-50 list-group-item" >
+       <div class="col-4 mb-5>
+       <div class="card list-group-item" >
         <div class="card-body">
           <h5 class="card-title">Name: ${name}</h5>
           <p class="card-text" >Assigned To: ${assignedTo}</p>
@@ -15,7 +15,7 @@ const createTaskHtml = (name, assignedTo, description, status, dueDate) => {
           <button type="button" class="btn btn-primary" id="done">Mark as Done</button>
         </div>
       </div>
-      
+     </div>  <br>
 `
  return html;
 };
