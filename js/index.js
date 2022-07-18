@@ -1,4 +1,7 @@
-const assign = new TaskManager();
+
+const taskManager = new TaskManager();
+taskManager.load();
+taskManager.render();
 
 taskform.addEventListener("submit", function() {
   event.preventDefault();
@@ -13,8 +16,9 @@ taskform.addEventListener("submit", function() {
   if(name.length == 0) {
     console.log("You must fill out this field");
   } else {
-     assign.addTask(name, assignedTo, description, status, dueDate);
-     console.log("It Works!"); 
+     taskManager.addTask(name, assignedTo, description, status, dueDate);
+     taskManager.save();
+     
   }
  
 });
@@ -25,10 +29,34 @@ function validFormFieldInput(data){
   const assignedTo = newTaskAssignedToInput.value;
   const newTaskDescriptionInput = document.querySelector('#description');
   const description = newTaskDescriptionInput.value;
-   const newTaskStatusInput = document.querySelector('#status');
+  const newTaskStatusInput = document.querySelector('#status');
   const status = newTaskStatusInput.value;
   const newTaskdueDateInput = document.querySelector('#dueDate');
   const dueDate = newTaskdueDateInput.value;
- 
- 
 }
+
+//Add eventListener to the taskList  Task 7 step 3 and 5
+  const tasksList = document.querySelector('#taskList');
+  tasksList.addEventListener('click', (event) => {
+    
+    if (event.target.classList.contains('done-button')) {
+        const parentTask = event.target.parentElement.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        const task = taskManager.getTaskById(taskId);
+        task.status = 'DONE';
+        taskManager.render();
+        taskManager.save();
+    }
+    
+    
+    if (event.target.classList.contains('delete-button')) {
+      const delParentTask = event.target.parentElement.parentElement.parentElement;
+      console.log(delParentTask);
+      const delTaskId = Number(delParentTask.dataset.taskId);
+      console.log(delTaskId);
+      taskManager.deleteTask(delTaskId);
+      taskManager.save();
+      taskManager.render();
+    } // Step 9, Task 3
+   });
+  
