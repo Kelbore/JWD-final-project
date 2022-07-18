@@ -1,21 +1,21 @@
 
-const createTaskHtml = (name, assignedTo, description, status, dueDate) => {
+const createTaskHtml = (name, assignedTo, description, status, dueDate, id) => {
 
   const html = `
-       <div class="col-4 mb-5>
+       <div data-task-id='${id}' class="col-4 mb-5">
        <div class="card list-group-item" >
         <div class="card-body">
-          <h5 class="card-title">Name: ${name}</h5>
+          <h5 class="card-title">Name:  ${name}</h5>
           <p class="card-text" >Assigned To: ${assignedTo}</p>
           <p class="card-text" >Description: ${description}</p>
           <p class="card-text" >Status: ${status}</p>
           <p class="card-text" >Due Date: ${dueDate}</p>
-          <a href="#" class="btn btn-primary">Edit</a>
-          <a href="#" class="btn btn-primary">Delete</a>
-          <button type="button" class="btn btn-primary" id="done">Mark as Done</button>
+          <p class="card-text " >Id: ${id}</p>
+          <a href="#" class="btn btn-primary delete-button">Delete</a>
+          <button type="button" class="btn btn-primary done-button" id="done">Mark as Done</button>
         </div>
       </div>
-     </div>  <br>
+</div> <br>
 `
  return html;
 };
@@ -42,9 +42,19 @@ class TaskManager {
     };
 
     this.tasks.push(task);
-    console.log(this.tasks);
     this.render();
   }
+
+  getTaskById(taskId) {
+    let foundTask;
+    for (let i = 0; i < this.tasks.length; i++) {
+      let task = this.tasks[i];
+      if (task.id === taskId) {
+        foundTask = task;
+      }
+    }
+    return foundTask;
+  } // Task 7, Step 4
 
  render() {
     var tasksHtmlList = [];
@@ -56,9 +66,8 @@ class TaskManager {
       // due to time zones, date is ahead by one day
       const formattedDate = (newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' + newDate.getFullYear();
       var taskHtml = createTaskHtml(currentTask.name, 
-     currentTask.assignedTo, currentTask.description, currentTask.status, formattedDate);
+     currentTask.assignedTo, currentTask.description, currentTask.status, formattedDate, currentTask.id);
       tasksHtmlList.push(taskHtml);
-      console.log(taskHtml);
       for(let i = 0; i < tasksHtmlList.length; i++){
         document.getElementById("taskList").innerHTML = tasksHtmlList;
       }
@@ -68,11 +77,46 @@ class TaskManager {
       tasksList.innerHTML = tasksHtml;
    
   }
+
+ 
+  save() {
+    var tasksJson = JSON.stringify(this.tasks);
+    localStorage.setItem('tasks', tasksJson);
+    var currentId = JSON.stringify(this.currentId);
+    localStorage.setItem('currentId', currentId);
+  } // Task 8, Step 1 **MISSING SUB-STEP 6**
+
+  load() {
+    if (localStorage.getItem('tasks')) {
+      var tasksJson = localStorage.getItem('tasks');
+    this.tasks = JSON.parse(tasksJson);
+
+    }
+    if (localStorage.getItem('currentId')) {
+       var currentId = localStorage.getItem('currentId');
+    this.currentId = currentId.valueOf();
+    }
+   
+    
+  } // Task 8, Step 2
+
+  // Task 9 step 2
+  deleteTask(taskId) {
+    const newTasks = [];
+    for (let j = 0; j < this.tasks.length; j++) {
+      const task = this.tasks[j];
+      if (task.id !== taskId) {
+        newTasks.push(task);
+      }
+    }
+    this.tasks = newTasks;
+  }
 }
 
+/*
 function clickMe() {
   event.preventDefault();
   newTaskVar = new TaskManager();
   newTaskVar.addTask();
 }
-
+*/
